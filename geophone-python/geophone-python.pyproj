@@ -2,15 +2,18 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>c438739f-5904-470d-b961-a3cc9cc775f2</ProjectGuid>
+    <ProjectGuid>{c438739f-5904-470d-b961-a3cc9cc775f2}</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>geophone_python.py</StartupFile>
+    <StartupFile>
+    </StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>geophone-python</Name>
-    <RootNamespace>geophone-python</RootNamespace>
+    <Name>geo-phone-python</Name>
+    <RootNamespace>geo-phone-python</RootNamespace>
+    <IsWindowsApplication>False</IsWindowsApplication>
+    <InterpreterId>Global|PythonCore|3.13</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +24,29 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="geophone_python.py" />
+    <Compile Include="REST\get_phone_info_last_first_rest.py" />
+    <Compile Include="REST\get_phone_Info_rest.py" />
+    <Compile Include="REST\gp_response.py" />
+    <Compile Include="SOAP\get_phone_info_last_first_soap.py" />
+    <Compile Include="SOAP\get_phone_Info_soap.py" />
+    <Compile Include="SOAP\gp_response.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="REST\" />
+    <Folder Include="REST\__pycache__\" />
+    <Folder Include="SOAP\" />
+    <Folder Include="SOAP\__pycache__\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="REST\readme.md" />
+    <Content Include="REST\__pycache__\get_phone_Info_rest.cpython-39.pyc" />
+    <Content Include="REST\__pycache__\gp_response.cpython-39.pyc" />
+    <Content Include="SOAP\readme.md" />
+    <Content Include="SOAP\__pycache__\get_phone_Info_soap.cpython-39.pyc" />
+    <Content Include="SOAP\__pycache__\gp_response.cpython-39.pyc" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="Global|PythonCore|3.13" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

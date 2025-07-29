@@ -2,15 +2,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>f842fec2-1963-4188-8612-451105a9a45d</ProjectGuid>
+    <ProjectGuid>{f842fec2-1963-4188-8612-451105a9a45d}</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>geophone_python_examples.py</StartupFile>
+    <StartupFile>main.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>geophone-python-examples</Name>
-    <RootNamespace>geophone-python-examples</RootNamespace>
+    <Name>geo-phone-python-example</Name>
+    <RootNamespace>geo-phone-python-example</RootNamespace>
+    <InterpreterId>Global|PythonCore|3.13</InterpreterId>
+    <IsWindowsApplication>False</IsWindowsApplication>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +23,17 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="geophone_python_examples.py" />
+    <Compile Include="get_phone_info_last_first_rest_sdk_example.py" />
+    <Compile Include="get_phone_info_last_first_soap_sdk_example.py" />
+    <Compile Include="get_phone_Info_rest_sdk_example.py" />
+    <Compile Include="get_phone_Info_soap_sdk_example.py" />
+    <Compile Include="main.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="Global|PythonCore|3.13" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="requirements.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

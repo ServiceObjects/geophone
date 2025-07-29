@@ -1,6 +1,6 @@
 ﻿![Service Objects Logo](https://www.serviceobjects.com/wp-content/uploads/2021/05/SO-Logo-with-TM.gif "Service Objects Logo")
 
-# GP - GeoPhone  
+# GP - GeoPhone
 
 DOTS GeoPhone (referred to as “GeoPhone” or “GP”) is a publicly available XML web service that provides reverse phone lookup information about a US (or sometimes Canadian) phone number. The service provides name, address, city and state, along with carrier exchange information.
 
@@ -23,65 +23,51 @@ Finally, also new is the quality field. Currently all contacts will be returned 
 ## Library Usage
 
 ```
-//
-// 1. Build the input
-//
-//  Required fields:
-//               PhoneNumber
-//               LicenseKey
-//               IsLive
-// 
-// Optional:
-//        TimeoutSeconds (default: 15)
+#  1. Build the input
+# Required fields:
+#               PhoneNumber
+#               LicenseKey
+#               IsLive
 
-using geo_phone_dot_net.REST;
+from get_phone_Info_rest import get_phone_info
 
-var input = new GetPhoneInfoClient.GetPhoneInfoInput(
-    PhoneNumber:    "805-963-1700",
-    LicenseKey:     "YOUR_LICENSE_KEY_HERE",
-    IsLive:         true,
-    TimeoutSeconds: 15
-);
+# 2  Call the method
+ response_data = get_phone_info(
+            phone_number=phone_number,
+            license_key=license_key,
+            is_live=is_live
+        )
 
-// 2. Call the sync Invoke() method.
-GPResponse response = GetPhoneInfoClient.Invoke(input);
-
-// 3. Inspect results.
-if (response.Error is null)
-{
-    Console.WriteLine("\r\n* Provider *\r\n"); 
-
-    foreach (var provider in response.Providers)
-    {
-        Console.WriteLine($"Provider : {provider.Name}");
-        Console.WriteLine($"City     : {provider.City}");
-        Console.WriteLine($"State    : {provider.State}");
-        Console.WriteLine($"Line Type: {provider.LineType}");
-        Console.WriteLine($"Latitude : {provider.Latitude}");
-        Console.WriteLine($"Longitude: {provider.Longitude}");
-        Console.WriteLine($"Quality  : {provider.Quality}");
-    }
-
-    Console.WriteLine("\r\n* Contact *\r\n");
-
-    foreach (var contact in response.Contacts)
-    {
-        Console.WriteLine($"Name   : {contact.Name}");
-        Console.WriteLine($"Address: {contact.Address}");
-        Console.WriteLine($"City   : {contact.City}");
-        Console.WriteLine($"State  : {contact.State}");
-        Console.WriteLine($"Zip    : {contact.Zip}");
-        Console.WriteLine($"Type   : {contact.Type}");
-    }
-}
-else
-{
-    Console.WriteLine("\n* Error *\r\n");
-
-    Console.WriteLine($"Error Type : {response.Error.Type}");
-    Console.WriteLine($"Description: {response.Error.Desc}");
-    Console.WriteLine($"Code       : {response.Error.Number}");
-}
+# 3. Inspect results.
+if response.error is None:
+    print("\n* Validation *\n")
+    if response.providers:
+        print("\n* Providers *\n")
+        for provider in response.providers:
+            print(f"Provider : {provider.Name}")
+            print(f"City     : {provider.City}")
+            print(f"State    : {provider.State}")
+            print(f"LineType : {provider.LineType}")
+            print(f"Latitude : {provider.Latitude}")
+            print(f"Longitude: {provider.Longitude}")
+            print(f"Quality  : {provider.Quality}")
+    else:
+        print("No providers found.")
+    print("\n* Contacts *\n")
+    if response.contacts:
+        for contact in response.contacts:
+            print(f"Name   : {contact.Name}")
+            print(f"Address: {contact.Address}")
+            print(f"City   : {contact.City}")
+            print(f"State  : {contact.State}")
+            print(f"Zip    : {contact.Zip}")
+            print(f"Type   : {contact.Type}")
+    else:
+        print("No contacts found.")
+else:
+    print("\n* Error *\n") 
+    print(f"Error Description: {response.error.Desc}")
+    print(f"Error Number     : {response.error.Number}")
 ```
 
 ## GP - GetPhoneInfoLastFirst
@@ -96,61 +82,53 @@ Two valuable bits of information are also retrieved – whether the phone line i
 ## Library Usage
 
 ```
-// 1. Build the input
-//  Required fields:
-//               PhoneNumber
-//               LicenseKey
-//               IsLive
-//
-// Optional:
-//        TimeoutSeconds (default: 30)
+#  1. Build the input
+# Required fields:
+#               PhoneNumber
+#               LicenseKey
+#               IsLive
+#
+# Though the API will run in any scenario, not adhering to these
+# rules can result in error responses.
 
-using geo_phone_dot_net.REST;
+from get_phone_info_last_first_rest import get_phone_info_last_first
 
-var input = new GetPhoneInfoLastFirstInput.GetPhoneInfoLastFirstInput(
-    PhoneNumber:    "805-963-1700",
-    LicenseKey:     "YOUR_LICENSE_KEY_HERE",
-    IsLive:         true,
-    TimeoutSeconds: 15
-);
+#  2. Call the method
 
-// 2. Call the sync Invoke() method.
-GPResponse response = GetPhoneInfoLastFirstClient.Invoke(input);
+response_data = get_phone_info_last_first(
+            phone_number=phone_number,
+            license_key=license_key,
+            is_live=is_live
+        )
+      
+#  3. Inspect results. 
+if response.error is None:
+    print("\n* Provide *\n")
+    if response.providers:
+        for provider in response.providers:
+            print(f"Provider : {provider.Name}")
+            print(f"City     : {provider.City}")
+            print(f"State    : {provider.State}")
+            print(f"LineType : {provider.LineType}")
+            print(f"Latitude : {provider.Latitude}")
+            print(f"Longitude: {provider.Longitude}")
+            print(f"Quality  : {provider.Quality}")
+    else:
+        print("No providers found.")
 
-// 3. Inspect results.
-if (response.Error is null)
-{
-    Console.WriteLine("\r\n* Provider *\r\n");
-
-    foreach (var provider in response.Providers)
-    {
-        Console.WriteLine($"Provider    : {provider.Name}");
-        Console.WriteLine($"Phone Number: {provider.City}");
-        Console.WriteLine($"State       : {provider.State}");
-        Console.WriteLine($"LineType    : {provider.LineType}");
-        Console.WriteLine($"Latitude    : {provider.Latitude}");
-        Console.WriteLine($"Longitude   : {provider.Longitude}");
-        Console.WriteLine($"Quality     : {provider.Quality}");
-    }
-
-    Console.WriteLine("\r\n* Contact *\r\n");
-
-    foreach (var contact in response.Contacts)
-    {
-        Console.WriteLine($"Name   : {contact.Name}");
-        Console.WriteLine($"Address: {contact.Address}");
-        Console.WriteLine($"City   : {contact.City}");
-        Console.WriteLine($"State  : {contact.State}");
-        Console.WriteLine($"Zip    : {contact.Zip}");
-        Console.WriteLine($"Type   : {contact.Type}");
-    }
-}
-else
-{
-    Console.WriteLine("\r\n* Error *\r\n");
-
-    Console.WriteLine($"Error Description: {response.Error.Desc}");
-    Console.WriteLine($"Error Number     : {response.Error.Number}");
-    Console.WriteLine($"Error Location   : {response.Error.Location}");
-}
+    print("\n* Contact *\n")
+    if response.contacts:
+        for contact in response.contacts:
+            print(f"Name   : {contact.Name}")
+            print(f"Address: {contact.Address}")
+            print(f"City   : {contact.City}")
+            print(f"State  : {contact.State}")
+            print(f"Zip    : {contact.Zip}")
+            print(f"Type   : {contact.Type}")
+    else:
+        print("No contacts found.")
+else:
+    print("\n* Error *\n")
+    print(f"Error Description: {response.Error.Desc}")
+    print(f"Error Number     : {response.Error.Number}")
 ```
