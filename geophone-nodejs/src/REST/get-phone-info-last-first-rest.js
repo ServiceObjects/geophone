@@ -80,7 +80,7 @@ const GetPhoneInfoLastFirstClient = {
         if (isLive && !isValid(response)) {
             const fallbackUrl = buildUrl(phoneNumber, licenseKey, BackupBaseUrl);
             const fallbackResponse = await httpGet(fallbackUrl, timeoutSeconds);
-            return isValid(fallbackResponse) ? fallbackResponse : response;
+            return fallbackResponse;
         }
         return response;
     },

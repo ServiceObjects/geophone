@@ -72,7 +72,7 @@ namespace geophone_dot_net.SOAP
 
                 if(response == null || (response.Error != null && response.Error.Number == "4"))
                 {
-                    throw new InvalidOperationException("Primary endpoint returned null or a fatal TypeCode=3 error for PhoneInfo_V2");
+                    throw new InvalidOperationException("Primary endpoint returned null or a fatal Number=4 error for PhoneInfo_V2");
                 }
                 return response;
             }
@@ -85,12 +85,7 @@ namespace geophone_dot_net.SOAP
                     clientBackup.Endpoint.Address = new System.ServiceModel.EndpointAddress(_backupUrl);
                     clientBackup.InnerChannel.OperationTimeout = TimeSpan.FromMilliseconds(_timeoutMs);
 
-                    var response = await clientBackup.GetPhoneInfo_V2Async(phoneNumber, licenseKey).ConfigureAwait(false);
-                    // If the response is null, or if a “fatal” Error.TypeCode == "3" came back, force a fallback
-                    if (response == null || (response.Error != null && response.Error.Number == "4"))
-                    {
-                        throw new InvalidOperationException("Backup endpoint returned null or a fatal TypeCode=4 error for PhoneInfo_V2");
-                    }
+                    PhoneInfo_V2 response = await clientBackup.GetPhoneInfo_V2Async(phoneNumber, licenseKey).ConfigureAwait(false);
                     return response;
                 }
                 catch (Exception backupEx)

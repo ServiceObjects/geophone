@@ -89,7 +89,7 @@ const GetPhoneInfoClient = {
         if (isLive && !isValid(response)) {
             const fallbackUrl = buildUrl(phoneNumber, licenseKey, BackupBaseUrl);
             const fallbackResponse = await httpGet(fallbackUrl, timeoutSeconds || 15);
-            return isValid(fallbackResponse) ? fallbackResponse : response;
+            return fallbackResponse;
         }
         return response;
     },

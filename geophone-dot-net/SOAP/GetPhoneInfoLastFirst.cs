@@ -65,11 +65,11 @@ namespace geophone_dot_net.SOAP
                 clientPrimary.Endpoint.Address = new System.ServiceModel.EndpointAddress(_primaryUrl);
                 clientPrimary.InnerChannel.OperationTimeout = TimeSpan.FromMilliseconds(_timeoutMs);
 
-                var response = await clientPrimary.GetPhoneInfoLastFirstAsync(phoneNumber, licenseKey).ConfigureAwait(false);
+                PhoneInfo response = await clientPrimary.GetPhoneInfoLastFirstAsync(phoneNumber, licenseKey).ConfigureAwait(false);
 
                 if (response == null || (response.Error != null && response.Error.Number == "4"))
                 {
-                    throw new InvalidOperationException("Primary endpoint returned null or a fatal TypeCode=4 error for GetPhoneInfoLastFirstAsync");
+                    throw new InvalidOperationException("Primary endpoint returned null or a fatal Number=4 error for GetPhoneInfoLastFirstAsync");
                 }
                 return response;
             }
@@ -82,10 +82,6 @@ namespace geophone_dot_net.SOAP
                     clientBackup.InnerChannel.OperationTimeout = TimeSpan.FromMilliseconds(_timeoutMs);
 
                     PhoneInfo response = await clientBackup.GetPhoneInfoLastFirstAsync(phoneNumber, licenseKey).ConfigureAwait(false);
-                    if (response == null || (response.Error != null && response.Error.Number == "4"))
-                    {
-                        throw new InvalidOperationException("Backup endpoint returned null or a fatal TypeCode=4 error for GetPhoneInfoLastFirstAsync");
-                    }
                     return response;
                 }
                 catch(Exception backupEx)

@@ -33,7 +33,7 @@ namespace geophone_dot_net.REST
             {
                 var fallbackUrl = BuildUrl(input, BackupBaseUrl);
                 GPResponse fallbackResponse = Helper.HttpGet<GPResponse>(fallbackUrl, input.TimeoutSeconds);
-                return IsValid(fallbackResponse) ? fallbackResponse : response;
+                return fallbackResponse;
             }
 
             return response;
@@ -55,7 +55,7 @@ namespace geophone_dot_net.REST
             {
                 var fallbackUrl = BuildUrl(input, BackupBaseUrl);
                 GPResponse fallbackResponse = await Helper.HttpGetAsync<GPResponse>(fallbackUrl, input.TimeoutSeconds).ConfigureAwait(false);
-                return IsValid(fallbackResponse) ? fallbackResponse : response;
+                return fallbackResponse;
             }
 
             return response;
