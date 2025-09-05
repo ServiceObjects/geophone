@@ -1,6 +1,6 @@
 import { GetPhoneInfoClient } from "../geophone-nodejs/src/REST/get-phone-Info-rest.js";
 
-export async function getPhoneInfoGo(licenseKey, isLive) {
+export async function getPhoneInfoRestGo(licenseKey, isLive) {
     console.log("\n----------------------------------");
     console.log("GeoPhone - GetPhoneInfo - REST SDK");
     console.log("----------------------------------");

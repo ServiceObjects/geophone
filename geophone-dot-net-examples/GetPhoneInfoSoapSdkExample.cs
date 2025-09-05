@@ -4,7 +4,7 @@ namespace geophone_dot_net_examples
 {
     public static class GetPhoneInfoSoapSdkExample
     {
-        public static async Task Go(string LicenseKey, bool IsLive)
+        public static void Go(string LicenseKey, bool IsLive)
         {
             Console.WriteLine("\r\n---------------------------------------");
             Console.WriteLine("GeoPhone - GetPhoneInfoInput - SOAP SDK");

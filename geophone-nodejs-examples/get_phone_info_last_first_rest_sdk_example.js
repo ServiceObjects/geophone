@@ -1,6 +1,6 @@
 import { GetPhoneInfoLastFirstClient } from '../geophone-nodejs/src/REST/get-phone-info-last-first-rest.js';
 
-export async function getPhoneInfoLastFirstGo(licenseKey, isLive) {
+export async function getPhoneInfoLastFirstRestGo(licenseKey, isLive) {
     console.log("\n-------------------------------------------");
     console.log("GeoPhone - GetPhoneInfoLastFirst - REST SDK")
     console.log("-------------------------------------------")
