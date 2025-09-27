@@ -25,19 +25,23 @@ Finally, also new is the quality field. Currently all contacts will be returned 
 ```
 //  1. Build the input
 // Required fields:
-//              PhoneNumber
-//              LicenseKey
-//              IsLive
+//              phoneNumber
+//              licenseKey
+//              isLive
 
 import { GetPhoneInfoClient } from "../geophone-nodejs/src/REST/get-phone-Info-rest.js";
+
+const phoneNumber = "805-963-17000";
+const timeoutSeconds = 15;
+const isLive = true;
+const licenseKey = "YOUR LICENSE KEY";
 
 // 2  Call the method 
 const response_data = await GetPhoneInfoClient.invoke(phoneNumber, licenseKey, isLive, timeoutSeconds);
 
 //  3. Inspect results.
-
 if (response_data.Error)
-    return console.error("Error invoking GetPhoneInfo:", response_data.Error);
+        return console.error("Error invoking GetPhoneInfo:", response_data.Error);
     
 console.log("\n* Validation *\n");
 
@@ -86,18 +90,21 @@ Two valuable bits of information are also retrieved – whether the phone line i
 ```
 // 1. Build the input
 // Required fields:
-//               PhoneNumber
-//               LicenseKey
-//               IsLive
+//               phoneNumber
+//               licenseKey
+//               isLive
 
 import { GetPhoneInfoLastFirstClient } from '../geophone-nodejs/src/REST/get-phone-info-last-first-rest.js';
+
+const phoneNumber = "805-963-17000";
+const timeoutSeconds = 15;
+const isLive = true;
+const licenseKey = "YOUR LICENSE KEY";
  
 // 2. Call the method
-
 const response_data = await GetPhoneInfoLastFirstClient.invokeAsync(phoneNumber, licenseKey, isLive, timeoutSeconds);
       
 // 3. Inspect results. 
-   
 if (response_data.Error)
     return console.error("Error invoking GetPhoneInfo:", response_data.Error);
     
@@ -131,5 +138,5 @@ if (response_data.Contacts && response_data.Contacts.length > 0) {
     }
 } else {
     console.log("No contacts found.");
-}
+} 
 ```

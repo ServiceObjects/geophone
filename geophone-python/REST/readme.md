@@ -25,11 +25,15 @@ Finally, also new is the quality field. Currently all contacts will be returned 
 ```
 #  1. Build the input
 # Required fields:
-#               PhoneNumber
-#               LicenseKey
-#               IsLive
+#               phone_number
+#               license_key
+#               is_live
 
 from get_phone_Info_rest import get_phone_info
+
+phone_number = "805-963-1700"
+is_live = True
+license_key = "YOUR LICENSE KEY"
 
 # 2  Call the method
  response_data = get_phone_info(
@@ -82,19 +86,18 @@ Two valuable bits of information are also retrieved – whether the phone line i
 ## Library Usage
 
 ```
-#  1. Build the input
 # Required fields:
-#               PhoneNumber
-#               LicenseKey
-#               IsLive
-#
-# Though the API will run in any scenario, not adhering to these
-# rules can result in error responses.
+#               phone_number
+#               license_key
+#               is_live
 
 from get_phone_info_last_first_rest import get_phone_info_last_first
 
-#  2. Call the method
+phone_number = "805-963-1700"
+is_live = True
+license_key = "YOUR LICENSE KEY"
 
+#  2. Call the method
 response_data = get_phone_info_last_first(
             phone_number=phone_number,
             license_key=license_key,

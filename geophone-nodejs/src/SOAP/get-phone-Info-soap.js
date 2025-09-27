@@ -1,4 +1,3 @@
-import { GPResponse } from "./gp-response.js";
 import { soap } from "strong-soap";
 
 /**
@@ -24,11 +23,11 @@ class GetPhoneInfoSoap {
         this.licenseKey = licenseKey;
         this.isLive = isLive;
         this.timeoutSeconds = timeoutSeconds;
-        this.LiveBaseUrl = "https://sws.serviceobjects.com/gp/soap.svc?wsdl";
-        this.BackupBaseUrl = "https://swsbackup.serviceobjects.com/gp/soap.svc?wsdl";
-        this.TrailBaseUrl = "https://trial.serviceobjects.com/gp/soap.svc?wsdl";
-        this._primaryWsdl = this.isLive ? this.LiveBaseUrl : this.TrailBaseUrl;
-        this._backupWsdl = this.isLive ? this.BackupBaseUrl : this.TrailBaseUrl;
+        this.liveBaseUrl = "https://sws.serviceobjects.com/gp/soap.svc?wsdl";
+        this.backupBaseUrl = "https://swsbackup.serviceobjects.com/gp/soap.svc?wsdl";
+        this.trailBaseUrl = "https://trial.serviceobjects.com/gp/soap.svc?wsdl";
+        this._primaryWsdl = this.isLive ? this.liveBaseUrl : this.trailBaseUrl;
+        this._backupWsdl = this.isLive ? this.backupBaseUrl : this.trailBaseUrl;
         if (!this._primaryWsdl) throw new Error("Primary WSDL URL is not set.");
         if (!this._backupWsdl) throw new Error("Backup WSDL URL is not set.");
     }
@@ -94,8 +93,7 @@ class GetPhoneInfoSoap {
                         if (!rawData) {
                             return reject(new Error("SOAP response is empty or undefined."));
                         }
-                        const parsed = new GPResponse(rawData);
-                        resolve(parsed);
+                        resolve(rawData);
                     } catch (parseErr) {
                         reject(new Error(`Failed to parse SOAP response: ${parseErr.message}`));
                     }

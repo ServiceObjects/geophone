@@ -31,44 +31,41 @@ Finally, also new is the quality field. Currently all contacts will be returned 
 
 import { GetPhoneInfoSoap } from "../geophone-nodejs/src/SOAP/get-phone-Info-soap.js";
 
-// 2 Call the  GetPhoneInfo method
+const phoneNumber = "805-963-17000";
+const timeoutSeconds = 15;
+const isLive = true;
+const licenseKey = "YOUR LICENSE KEY";
 
+// 2 Call the  GetPhoneInfo method
 const client = new GetPhoneInfoSoap(phoneNumber, licenseKey, isLive, timeoutSeconds);
 const response_data = await client.getPhoneInfo();
 
 // 3. Inspect results.
-
 if (response_data.Error)
     return console.error("Error invoking GetPhoneInfo:", response_data.Error);
    
 console.log("\n* Validation *\n");
 
-if (response_data.Providers && response_data.Providers.length > 0) {
+if (response_data.Providers) {
     console.log("\n* Providers *\n")
-    for (const provider in response_data.Providers) {
-        const providerData = response_data.Providers[provider];
-        console.log(`Name     : ${providerData.Name}`);
-        console.log(`City     : ${providerData.City}`);
-        console.log(`State    : ${providerData.State}`);
-        console.log(`LineType : ${providerData.LineType}`);
-        console.log(`Latitude : ${providerData.Latitude}`);
-        console.log(`Longitude: ${providerData.Longitude}`);
-        console.log(`Quality  : ${providerData.Quality}`);
-    }
+    console.log(`Name     : ${response_data.Providers.Provider[0].Name}`);
+    console.log(`City     : ${response_data.Providers.Provider[0].City}`);
+    console.log(`State    : ${response_data.Providers.Provider[0].State}`);
+    console.log(`LineType : ${response_data.Providers.Provider[0].LineType}`);
+    console.log(`Latitude : ${response_data.Providers.Provider[0].Latitude}`);
+    console.log(`Longitude: ${response_data.Providers.Provider[0].Longitude}`);
+    console.log(`Quality  : ${response_data.Providers.Provider[0].Quality}`);
 } else {
     console.log("No providers found.");
 }
 console.log("\n* Contacts *\n");
-if (response_data.Contacts && response_data.Contacts.length > 0) {
-    for (const contact in response_data.Contacts) {
-        const contactData = response_data.Contacts[contact];
-        console.log(`Name   : ${contactData.Name}`);
-        console.log(`Address: ${contactData.Address}`);
-        console.log(`City   : ${contactData.City}`);
-        console.log(`State  : ${contactData.State}`);
-        console.log(`Zip    : ${contactData.Zip}`);
-        console.log(`Type   : ${contactData.Type}`);
-    }
+if (response_data.Contacts) {
+    console.log(`Name   : ${response_data.Contacts.Contact[0].Name}`);
+    console.log(`Address: ${response_data.Contacts.Contact[0].Address}`);
+    console.log(`City   : ${response_data.Contacts.Contact[0].City}`);
+    console.log(`State  : ${response_data.Contacts.Contact[0].State}`);
+    console.log(`Zip    : ${response_data.Contacts.Contact[0].Zip}`);
+    console.log(`Type   : ${response_data.Contacts.Contact[0].Type}`);
 } else {
     console.log("No contacts found.");
 }
@@ -93,44 +90,41 @@ Two valuable bits of information are also retrieved – whether the phone line i
 
 import { GetPhoneInfoLastFirstSoap} from '../geophone-nodejs/src/SOAP/get-phone-info-last-first-soap.js';
 
-// 2 Call the method GetPhoneInfoLastFirst
+const phoneNumber = "805-963-17000";
+const timeoutSeconds = 15;
+const isLive = true;
+const licenseKey = "YOUR LICENSE KEY";
 
+// 2 Call the method GetPhoneInfoLastFirst
 const client = new GetPhoneInfoLastFirstSoap(phoneNumber, licenseKey, isLive, timeoutSeconds);
 const response_data = await client.getPhoneInfoLastFirst();
 
 // 3. Inspect results.
-
 if (response_data.Error)
     return console.error("Error invoking GetPhoneInfoLastFirst:", response_data.Error);
     
 console.log("\n* Validation *\n");
 
-if (response_data.Providers && response_data.Providers.length > 0) {
+if (response_data.Providers) {
     console.log("\n* Providers *\n")
-    for (const provider in response_data.Providers) {
-        const providerData = response_data.Providers[provider];
-        console.log(`Name     : ${providerData.Name}`);
-        console.log(`City     : ${providerData.City}`);
-        console.log(`State    : ${providerData.State}`);
-        console.log(`LineType : ${providerData.LineType}`);
-        console.log(`Latitude : ${providerData.Latitude}`);
-        console.log(`Longitude: ${providerData.Longitude}`);
-        console.log(`Quality  : ${providerData.Quality}`);
-    }
+    console.log(`Name     : ${response_data.Providers.Provider[0].Name}`);
+    console.log(`City     : ${response_data.Providers.Provider[0].City}`);
+    console.log(`State    : ${response_data.Providers.Provider[0].State}`);
+    console.log(`LineType : ${response_data.Providers.Provider[0].LineType}`);
+    console.log(`Latitude : ${response_data.Providers.Provider[0].Latitude}`);
+    console.log(`Longitude: ${response_data.Providers.Provider[0].Longitude}`);
+    console.log(`Quality  : ${response_data.Providers.Provider[0].Quality}`);
 } else {
     console.log("No providers found.");
 }
 console.log("\n* Contacts *\n");
-if (response_data.Contacts && response_data.Contacts.length > 0) {
-    for (const contact in response_data.Contacts) {
-        const contactData = response_data.Contacts[contact];
-        console.log(`Name   : ${contactData.Name}`);
-        console.log(`Address: ${contactData.Address}`);
-        console.log(`City   : ${contactData.City}`);
-        console.log(`State  : ${contactData.State}`);
-        console.log(`Zip    : ${contactData.Zip}`);
-        console.log(`Type   : ${contactData.Type}`);
-    }
+if (response_data.Contacts) {
+    console.log(`Name   : ${response_data.Contacts.Contact[0].Name}`);
+    console.log(`Address: ${response_data.Contacts.Contact[0].Address}`);
+    console.log(`City   : ${response_data.Contacts.Contact[0].City}`);
+    console.log(`State  : ${response_data.Contacts.Contact[0].State}`);
+    console.log(`Zip    : ${response_data.Contacts.Contact[0].Zip}`);
+    console.log(`Type   : ${response_data.Contacts.Contact[0].Type}`);
 } else {
     console.log("No contacts found.");
 }

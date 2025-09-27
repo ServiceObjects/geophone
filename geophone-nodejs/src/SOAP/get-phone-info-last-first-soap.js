@@ -1,5 +1,4 @@
 import { soap } from "strong-soap";
-import { GPResponse } from "./gp-response.js";
 
 /**
  * <summary>
@@ -101,8 +100,7 @@ class GetPhoneInfoLastFirstSoap {
                                     new Error("SOAP response is empty or undefined.")
                                 );
                             }
-                            const parsed = new GPResponse(rawData);
-                            resolve(parsed);
+                            resolve(rawData);
                         } catch (parseErr) {
                             reject(
                                 new Error(`Failed to parse SOAP response: ${parseErr.message}`)

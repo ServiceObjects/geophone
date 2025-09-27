@@ -29,7 +29,6 @@
     <Compile Include="REST\gp_response.py" />
     <Compile Include="SOAP\get_phone_info_last_first_soap.py" />
     <Compile Include="SOAP\get_phone_Info_soap.py" />
-    <Compile Include="SOAP\gp_response.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="REST\" />
