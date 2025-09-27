@@ -1,12 +1,12 @@
 export class Provider {
     constructor(data) {
-        this.Name = data.Name || '';
-        this.City = data.City || '';
-        this.State = data.State || '';
-        this.LineType = data.LineType || '';
-        this.Latitude = data.Latitude || '';
-        this.Longitude = data.Longitude || '';
-        this.Quality = data.Quality || '';
+        this.Name = data.Name;
+        this.City = data.City;
+        this.State = data.State;
+        this.LineType = data.LineType;
+        this.Latitude = data.Latitude;
+        this.Longitude = data.Longitude;
+        this.Quality = data.Quality;
     }
     toString() {
         return `ProviderOutput: Name = ${this.Name}, City = ${this.City}, State = ${this.State}, LineType = ${this.LineType}, Latitude = ${this.Latitude}, Longitude = ${this.Longitude}, Quality = ${this.Quality}`;
@@ -15,12 +15,12 @@ export class Provider {
 
 export class Contact {
     constructor(data) {
-        this.Name = data.Name || '';
-        this.Address = data.Address || '';
-        this.City = data.City || '';
-        this.State = data.State || '';
-        this.Zip = data.Zip || '';
-        this.Type = data.Type || '';
+        this.Name = data.Name;
+        this.Address = data.Address;
+        this.City = data.City;
+        this.State = data.State;
+        this.Zip = data.Zip;
+        this.Type = data.Type;
     }
     toString() {
         return `ContactOutput: Name = ${this.Name}, Address = ${this.Address}, City = ${this.City}, State = ${this.State}, Zip = ${this.Zip}, Type = ${this.Type}`;
@@ -29,9 +29,9 @@ export class Contact {
 
 export class Error {
     constructor(data) {
-        this.Desc = data.Desc || '';
-        this.Number = data.Number || '';
-        this.Location = data.Location || '';
+        this.Desc = data.Desc;
+        this.Number = data.Number;
+        this.Location = data.Location;
     }
     toString() {
         return `Desc: ${this.Desc} Number: ${this.Number} Location: ${this.Location}`;
