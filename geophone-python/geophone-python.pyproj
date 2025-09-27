@@ -35,7 +35,9 @@
     <Folder Include="SOAP\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="REST\manifest.csv" />
     <Content Include="REST\readme.md" />
+    <Content Include="SOAP\manifest.csv" />
     <Content Include="SOAP\readme.md" />
   </ItemGroup>
   <ItemGroup>

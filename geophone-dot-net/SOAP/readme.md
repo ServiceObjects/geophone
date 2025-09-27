@@ -24,9 +24,14 @@ Finally, also new is the quality field. Currently all contacts will be returned 
 
 ```
 // 1 Instantiate the service wrapper
-var gp = new GetPhoneInfoValidation(true)
+var gp = new GetPhoneInfoValidation(IsLive)
 
 // 2 Provide your input data
+//  Required fields:
+//               PhoneNumber
+//               LicenseKey
+//               IsLive
+
 string PhoneNumber = "805-963-1700";
 string LicenseKey  = "YOUR_LICENSE_KEY_HERE";
 
@@ -85,12 +90,16 @@ Two valuable bits of information are also retrieved – whether the phone line i
 
 ```
 // 1. Instantiate the service wrapper
-var gp = new GetPhoneInfoLastFirstValidation(true)
+var gp = new GetPhoneInfoLastFirstValidation(IsLive)
 
 // 2. Provide your input data
-string PhoneNumber    = "805-963-1700";
-string LicenseKey     = "YOUR_LICENSE_KEY_HERE";
-string IsLive         = true;
+//  Required fields:
+//               PhoneNumber
+//               LicenseKey
+//               IsLive
+
+string PhoneNumber = "805-963-1700";
+string LicenseKey  = "YOUR_LICENSE_KEY_HERE";
 
 // 3. Call the sync Invoke() method.
  var response = clientPrimary.GetPhoneInfoLastFirstAsync(PhoneNumber, LicenseKey).Result;

@@ -25,43 +25,49 @@ Finally, also new is the quality field. Currently all contacts will be returned 
 ```
 1. Build the input
 # Required fields:
-#               PhoneNumber
-#               LicenseKey
-#               IsLive
+#               phone_number
+#               license_key
+#               is_live
 
 from get_phone_Info_soap import GetPhoneInfoValidation
 
+phone_number = "805-963-1700"
+is_live = True
+license_key = "YOUR LICENSE KEY"
+
 # 2 Call the  GetPhoneInfo method
-service = GetPhoneInfoValidation(license_key, is_live=True)
-response = service.get_phone_info(phone_number="805-963-1700")
+service = GetPhoneInfoValidation(license_key, is_live)
+response = service.get_phone_info(phone_number)
 
 # 3. Inspect results.
 if not hasattr(response, 'Error'):
     print("\n* Validation *\n")
-    if hasattr(response, 'Providers') and response.Providers:
-        print("\n* Providers *\n")
-        for provider in response.Providers:
-            print(f"Name     : {provider[1][0].Name}")
-            print(f"City     : {provider[1][0].City}")
-            print(f"State    : {provider[1][0].State}")
-            print(f"LineType : {provider[1][0].LineType}")
-            print(f"Latitude : {provider[1][0].Latitude}")
-            print(f"Longitude: {provider[1][0].Longitude}")
-            print(f"Quality  : {provider[1][0].Quality}")
-    if hasattr(response, 'Contacts') and response.Contacts:
-        print("\n\n* Contacts *\n")
-        for contact in response.Contacts:
-            print(f"Name   : {contact[1][0].Name}")
-            print(f"Address: {contact[1][0].Address}")
-            print(f"City   : {contact[1][0].City}")
-            print(f"State  : {contact[1][0].State}")
-            print(f"ZIP    : {contact[1][0].Zip}")
-            print(f"Type   : {contact[1][0].Type}")
-else:
-    if hasattr(response, 'Error') and response.Error:
-        print("\n* Error *\n")
-        print(f"Number     : {response.Error.Number}")
-        print(f"Description: {response.Error.Desc}")
+    if not hasattr(response, 'Error'):
+        print("\n* Validation *\n")
+        if hasattr(response, 'Providers') and response.Providers:
+            print("\n* Providers *\n")
+            for provider in response.Providers:
+                print(f"Name     : {provider[1][0].Name}")
+                print(f"City     : {provider[1][0].City}")
+                print(f"State    : {provider[1][0].State}")
+                print(f"LineType : {provider[1][0].LineType}")
+                print(f"Latitude : {provider[1][0].Latitude}")
+                print(f"Longitude: {provider[1][0].Longitude}")
+                print(f"Quality  : {provider[1][0].Quality}")
+        if hasattr(response, 'Contacts') and response.Contacts:
+            print("\n\n* Contacts *\n")
+            for contact in response.Contacts:
+                print(f"Name   : {contact[1][0].Name}")
+                print(f"Address: {contact[1][0].Address}")
+                print(f"City   : {contact[1][0].City}")
+                print(f"State  : {contact[1][0].State}")
+                print(f"ZIP    : {contact[1][0].Zip}")
+                print(f"Type   : {contact[1][0].Type}")
+    else:
+        if hasattr(response, 'Error') and response.Error:
+            print("\n* Error *\n")
+            print(f"Number     : {response.Error.Number}")
+            print(f"Description: {response.Error.Desc}")
 ```
 
 ## GP - GetPhoneInfoLastFirst
@@ -78,19 +84,21 @@ Two valuable bits of information are also retrieved – whether the phone line i
 ```
 1. Build the input
 # Required fields:
-#               PhoneNumber
-#               LicenseKey
-#               IsLive
+#               phone_number
+#               license_key
+#               is_live
 
 from get_phone_info_last_first_soap import GetPhoneInfoLastFirstValidation
 
-# 2 Call the method GetPhoneInfoLastFirst
+phone_number = "805-963-1700"
+is_live = True
+license_key = "YOUR LICENSE KEY"
 
-service = GetPhoneInfoLastFirstValidation(license_key, is_live=True)
-response = service.get_phone_info_last_fisrt(phone_number="805-963-1700")
+# 2 Call the method GetPhoneInfoLastFirst
+service = GetPhoneInfoLastFirstValidation(license_key, is_live)
+response = service.get_phone_info_last_first(phone_number)
 
 # 3. Inspect results.   
-
 if not hasattr(response, 'Error'):
     print("\n* Validation *\n")
     if hasattr(response, 'Providers') and response.Providers:

@@ -17,7 +17,7 @@ def get_phone_info_last_first_soap_sdk_go(license_key: str, is_live: bool) -> No
 
     service = GetPhoneInfoLastFirstValidation(license_key, is_live=True)
     try:
-        response = service.get_phone_info_last_fisrt(phone_number="805-963-1700")
+        response = service.get_phone_info_last_first(phone_number="805-963-1700")
         if not hasattr(response, 'Error'):
             print("\n* Validation *\n")
             if hasattr(response, 'Providers') and response.Providers:
