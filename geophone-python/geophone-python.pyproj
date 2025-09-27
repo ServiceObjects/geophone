@@ -32,17 +32,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="REST\" />
-    <Folder Include="REST\__pycache__\" />
     <Folder Include="SOAP\" />
-    <Folder Include="SOAP\__pycache__\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="REST\readme.md" />
-    <Content Include="REST\__pycache__\get_phone_Info_rest.cpython-39.pyc" />
-    <Content Include="REST\__pycache__\gp_response.cpython-39.pyc" />
     <Content Include="SOAP\readme.md" />
-    <Content Include="SOAP\__pycache__\get_phone_Info_soap.cpython-39.pyc" />
-    <Content Include="SOAP\__pycache__\gp_response.cpython-39.pyc" />
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="Global|PythonCore|3.13" />
